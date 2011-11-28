@@ -1,0 +1,22 @@
+h1. hockey.nesbot.com
+
+This is my first attempt at working with Scala using the "playframework 2.0 beta":http://playframework.org/2.0.  I did this site to learn Scala using Play 2.0 and figured I might as well create something more than a hello world.
+
+"http://hockey.nesbot.com/":http://hockey.nesbot.com/
+
+h2. Sidney Crosby Art Ross Watch
+
+Even after missing the remainder of last season and the first 20 games of this season, can Sidney Crosby capture the Art Ross Trophy again?
+
+Follow « Sid the Kid » for the rest of this history making season!
+
+"http://hockey.nesbot.com/crosbywatch":http://hockey.nesbot.com/crosbywatch
+
+h2. MyNHL
+
+Have you ever wanted to change wins to be worth 3 points?
+Make over-time or shoot out losses worth 0 points?
+
+We give you the control to see who would make the playoffs and who would hit the golf course early!
+
+"http://hockey.nesbot.com/mynhl":http://hockey.nesbot.com/mynhl
