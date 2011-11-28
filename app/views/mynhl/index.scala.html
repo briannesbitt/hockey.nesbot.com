@@ -59,17 +59,13 @@
          }
 
          function highlightFav(fav){
-            var clz = "fav"
-
-            if (fav == "TOR" ) clz = "bluesucks"
+            if (fav == "TOR") fav = "OTT"
 
             $("#teamSortNHL tr.fav").removeClass("fav");
             $("#teamSortMYNHL tr.fav").removeClass("fav");
-            $("#teamSortNHL tr.bluesucks").removeClass("bluesucks");
-            $("#teamSortMYNHL tr.bluesucks").removeClass("bluesucks");
-
-            $("#teamSortNHL tbody :contains(" + fav + ")").addClass(clz)
-            $("#teamSortMYNHL tbody :contains(" + fav + ")").addClass(clz)
+         
+            $("#teamSortNHL tbody :contains(" + fav + ")").addClass("fav")
+            $("#teamSortMYNHL tbody :contains(" + fav + ")").addClass("fav")
          }
       });
       </script>
