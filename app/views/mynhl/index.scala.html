@@ -1,0 +1,79 @@
+@(teamNames:Map[String, String])
+
+@template(null, "mynhl") {
+<div class="page-header">
+   <h1>My NHL <small>Is your team really that good?</small></h1>
+</div>
+<div class="row">
+   <div class="span14">
+      <p>Have you ever wanted to change wins to be worth 3 points?<br/>Make over-time or shoot out losses worth 0 points?</p>
+
+      <p>We give you the control to see who would make the playoffs and who would hit the golf course early!</p>
+
+      <div class="clearfix">
+         <form>
+            <label for="fav">My Team:</label>
+            <div class="input"><select id="fav" name="fav" class="span3">
+               <option value=""></option>
+               @teamNames.map{ case(k,v) =>
+                  <option value="@k" @if(k.equals("OTT")){selected="selected"}>@v</option>
+               }
+            </select></div>
+         </form>
+      </div>
+
+      <div class="row">
+         <div class="span7">
+            <h3>NHL</h3>
+            @pointsConfig("nhlform", false)
+            <div id="standingsNHL"></div>
+         </div>
+         <div class="span7">
+            <h3>My NHL</h3>
+            @pointsConfig("mynhlform", true)
+            <div id="standingsMYNHL"></div>
+         </div>
+      </div>
+
+      <script type="text/javascript">
+      $(document).ready(function() {
+
+         refreshMyNHL()
+
+         $("#fav").change( function() { highlightFav($("#fav").val()) } )
+         $("#mynhlform :input").change(function() {refreshMyNHL()})
+
+         // load NHL standings - only need to do this once
+         $.ajax({
+            url: "@controllers.routes.MyNhl.dataTable()",
+            data: {id: 'teamSortNHL'},
+            success: function(html){$("#standingsNHL").html(html);highlightFav($("#fav").val());}
+         });
+
+         function refreshMyNHL() {
+            $.ajax({
+                 url: "@controllers.routes.MyNhl.dataTable()",
+                 data: $("#mynhlform").serialize() + "&id=teamSortMYNHL",
+                 success: function(html){$("#standingsMYNHL").html(html);highlightFav($("#fav").val());}
+               });
+         }
+
+         function highlightFav(fav){
+            var clz = "fav"
+
+            if (fav == "TOR" ) clz = "bluesucks"
+
+            $("#teamSortNHL tr.fav").removeClass("fav");
+            $("#teamSortMYNHL tr.fav").removeClass("fav");
+            $("#teamSortNHL tr.bluesucks").removeClass("bluesucks");
+            $("#teamSortMYNHL tr.bluesucks").removeClass("bluesucks");
+
+            $("#teamSortNHL tbody :contains(" + fav + ")").addClass(clz)
+            $("#teamSortMYNHL tbody :contains(" + fav + ")").addClass(clz)
+         }
+      });
+      </script>
+
+   </div>
+</div>
+}

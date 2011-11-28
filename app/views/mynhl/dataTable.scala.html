@@ -1,0 +1,38 @@
+@(teams: Seq[Team], id: String, w:Int, otw:Int, sow:Int, l:Int, otl:Int, sol:Int)
+
+<div>
+   <script type="text/javascript">
+   $(document).ready(function() {$("#@id").tablesorter({sortList: [[8,1],[2,1]]});} );
+   </script>
+
+   <table id="@id" class="data standings zebra-striped bordered-table">
+   <thead>
+   <tr>
+      <th class="header">Team</th>
+      <th class="header">GP</th>
+      <th class="header">W</th>
+      <th class="header">L</th>
+      <th class="header">OTW</th>
+      <th class="header">OTL</th>
+      <th class="header">SOW</th>
+      <th class="header">SOL</th>
+      <th class="header">Pts</th>
+   </tr>
+   </thead>
+   <tbody>
+   @teams.map { team =>
+      <tr>
+         <td class="left">@team.name</td>
+         <td>@team.games</td>
+         <td>@team.w</td>
+         <td>@team.l</td>
+         <td>@team.otw</td>
+         <td>@team.otl</td>
+         <td>@team.sow</td>
+         <td>@team.sol</td>
+         <td>@team.points(w, l, otw, otl, sow, sol)</td>
+      </tr>
+   }
+   </tbody>
+   </table>
+</div>

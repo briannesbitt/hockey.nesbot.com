@@ -1,0 +1,32 @@
+@(id:String,isEditable:Boolean)
+
+@generateInput(title:String, id:String, default:Int) = {
+  <div class="configInput">
+    <label>@title</label>
+    <div class="input">
+
+      @if(isEditable){
+        <select class="small" id="@id" name="@id">
+        @for(i <- 0 to 5){
+          <option value="@i" @if(i==default){selected="selected"} >@i pt@if(i!=1){s}</option>
+        }
+        </select>
+      }else{
+        <span class="uneditable-input">@default pt@if(default!=1){s}</span>
+      }
+    </div>
+  </div>
+}
+
+<form id="@id" class="pointsConfig">
+   <div class="clearfix">
+      @generateInput("Wins", "w", 2)
+      @generateInput("OT Wins", "otw", if(isEditable) 1 else 2)
+      @generateInput("SO Wins", "sow", if(isEditable) 1 else 2)
+   </div>
+   <div class="clearfix">
+      @generateInput("Losses", "l", 0)
+      @generateInput("OT Losses", "otl", if(isEditable) 0 else 1)
+      @generateInput("SO Losses", "sol", if(isEditable) 0 else 1)
+   </div>
+</form>

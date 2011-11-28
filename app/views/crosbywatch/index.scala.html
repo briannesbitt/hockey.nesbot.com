@@ -1,0 +1,65 @@
+@(players:Seq[Player], crosbyToWin:Boolean, winnerName: String)
+
+@template(null, "crosbywatch") {
+
+<div class="page-header">
+   <h1>Sidney Crosby <small>Art Ross Watch</small></h1>
+</div>
+<div class="row">
+   <div class="span14">
+      <p>Even after missing the remainder of last season and the first 20 games of this season, can Sidney Crosby capture the Art Ross Trophy again?</p>
+
+      <p>Follow <b>&laquo; Sid the Kid &raquo;</b> for the rest of this history making season!</p>
+
+      <p>This would not be the first time for Crosby.  In his second season, he led the NHL with 120 points (36 goals, 84 assists) to capture the Art Ross Trophy, becoming the youngest player and the only teenager to win a scoring title in any major North American sports league.</p>
+
+      <div id="alertResult" class="alert-message @if(crosbyToWin) {success} else {error}">
+         <p>We are predicting <b>@winnerName</b> to win the Art Ross Trophy</p>
+      </div>
+
+      <div>
+         <script type="text/javascript">
+         $(document).ready(function() {$("#playersSort").tablesorter({sortList: [[7,1]]});} );
+         </script>
+
+         <table id="playersSort" class="data condensed-table zebra-striped">
+         <thead>
+         <tr>
+            <th class="header">Name</th>
+            <th class="header">Team</th>
+            <th class="header">Games</th>
+            <th class="header">Goals</th>
+            <th class="header">Assists</th>
+            <th class="header">Points</th>
+            <th class="header">Points/Game</th>
+            <th class="header">Projected Points</th>
+         </tr>
+         </thead>
+         <tbody>
+         @players.map { player =>
+            <tr class="@if(Player.CrosbyName.equals(player.name)) {crosby @if(crosbyToWin) {success} else {error}}">
+               <td class="left">@player.name</td>
+               <td>@player.team</td>
+               <td>@player.games</td>
+               <td>@player.goals</td>
+               <td>@player.assists</td>
+               <td>@player.points</td>
+               <td>@{"%.2f".format(player.pointsPerGame)}</td>
+               <td>@player.projectedPoints</td>
+            </tr>
+         }
+         </tbody>
+         </table>
+      </div>
+
+      <p>
+         Learn more about the <a href="http://en.wikipedia.org/wiki/Art_Ross_Trophy">Art Ross Trophy</a><br/>
+         Learn more about <a href="http://en.wikipedia.org/wiki/Sidney_Crosby">Sidney Crosby</a><br/>
+         Learn more about the <a href="http://nhl.com">National Hockey League</a><br/>
+         Learn more about <a href="http://playframework.com/2.0">Play framework 2.0</a><br/>
+         Learn more about <a href="http://mongodb.org">MongoDB</a><br/>
+         Learn more about <a href="http://nesbot.com">me</a><br/>
+      </p>
+   </div>
+</div>
+}
