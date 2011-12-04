@@ -1,5 +1,7 @@
 h1. hockey.nesbot.com
 
+The introductory blog post: "http://nesbot.com/2011/11/29/sidney-crosby-art-ross-watch-mynhl":http://nesbot.com/2011/11/29/sidney-crosby-art-ross-watch-mynhl
+
 This is my first attempt at working with Scala using the "playframework 2.0 beta":http://playframework.org/2.0.  I did this site to learn Scala using Play 2.0 and figured I might as well create something more than a hello world.
 
 "http://hockey.nesbot.com/":http://hockey.nesbot.com/
